@@ -25,7 +25,14 @@
     - plans/adr-001-parser-architecture.md (new)
     - tests/test_extractor.py (updated)
     - tests/test_parser_state.py (new)
-- Notes: Ready for Provider-specific rules (Issue #6).
+- Completed TTB provider classifier + transaction parsing rules (Issue #6).
+- Key decisions:
+    - Removed line flattening to preserve PyMuPDF's block-level grouping, which often contains the whole transaction row.
+    - Implemented a "pending FX" state to capture foreign currency amounts that appear on lines preceding the transaction date.
+    - Added TTB-specific regex for account number (card) and statement date extraction.
+- Files changed:
+    - src/credit_card_extraction/extractor.py (Added TTB parsing logic and patterns)
+- Notes: Ready for JSON domain models + validation shell (Issue #7).
 - Performed deep purge of sensitive PDF statements from git history using git-filter-repo.
 - Updated .gitignore to permanently exclude test-pdf/*.pdf.
 - Verified local files remain on disk but are no longer tracked.
