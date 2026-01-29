@@ -1,16 +1,40 @@
 from typing import List, Tuple, Dict
-from pydantic import BaseModel
 import fitz  # PyMuPDF
+from .models import RawLine, NormalizedLine, ExtractionResult, StatementHeader, ParserState
 
-class RawLine(BaseModel):
-    text: str
-    page: int
-    bbox: Tuple[float, float, float, float]  # (x0, y0, x1, y1)
+class StatementParser:
+    def __init__(self):
+        self.state = ParserState.START
+        self.result = ExtractionResult(
+            header=StatementHeader(account_number="UNKNOWN"),
+            transactions=[],
+            validation=[]
+        )
+        
+    def parse(self, lines: List[NormalizedLine]) -> ExtractionResult:
+        """
+        Main parsing loop using a state machine.
+        """
+        for line in lines:
+            self._process_line(line)
+        return self.result
 
-class NormalizedLine(BaseModel):
-    text: str
-    page: int
-    y: float
+    def _process_line(self, line: NormalizedLine):
+        """
+        Simple state transitions for the skeleton.
+        In Issue #6, these will be replaced with TTB-specific rules.
+        """
+        text = line.text.lower()
+        
+        if self.state == ParserState.START:
+            self.state = ParserState.HEADER
+            
+        if "transaction" in text or "activity" in text:
+            self.state = ParserState.TRANSACTIONS
+        elif "reward" in text or "point" in text:
+            self.state = ParserState.REWARDS
+        elif "footer" in text or "total" in text:
+            self.state = ParserState.FOOTER
 
 def extract_text_with_coords(file_path: str) -> List[RawLine]:
     """

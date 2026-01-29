@@ -1,6 +1,7 @@
 import pytest
 import os
-from credit_card_extraction.extractor import extract_text_with_coords, normalize_lines, RawLine
+from credit_card_extraction.extractor import extract_text_with_coords, normalize_lines
+from credit_card_extraction.models import RawLine
 
 def test_extract_text_with_coords_real_pdf():
     # Use the known TTB test PDF

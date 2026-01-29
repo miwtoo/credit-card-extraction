@@ -14,3 +14,15 @@
     - src/credit_card_extraction/extractor.py (added NormalizedLine and normalize_lines)
     - tests/test_extractor.py (added normalization tests)
 - Notes: Ready for State Machine Parser (Issue #5).
+- Completed State Machine Parser Skeleton (Issue #5) and ADR-0001 (Architecture).
+- Key decisions: 
+    - Moved all domain models (RawLine, NormalizedLine) and target schema (ExtractionResult) to a dedicated models.py.
+    - Implemented StatementParser as a state machine using a ParserState enum.
+    - Added ADR in plans/adr-001-parser-architecture.md.
+- Files changed:
+    - src/credit_card_extraction/models.py (new)
+    - src/credit_card_extraction/extractor.py (refactored to use models, added StatementParser)
+    - plans/adr-001-parser-architecture.md (new)
+    - tests/test_extractor.py (updated)
+    - tests/test_parser_state.py (new)
+- Notes: Ready for Provider-specific rules (Issue #6).
