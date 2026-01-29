@@ -51,3 +51,19 @@
     - src/credit_card_extraction/extractor.py
     - tests/test_header_summary.py (new)
 - Notes: Ready for FastAPI POST /parse (Issue #8).
+
+[2026-01-29]
+- Completed FastAPI /parse upload endpoint + parse helper (Issue #8).
+- Added sanitized fixture + golden JSON + pytest golden test for TTB (Issue #9).
+- Added README usage examples and fixture notes (Issue #10).
+- Key decisions:
+    - Use temp file upload flow and reject non-PDF/empty uploads.
+    - Keep fixtures text-only to avoid PII while preserving parser behavior.
+- Files changed:
+    - src/credit_card_extraction/api.py (new)
+    - src/credit_card_extraction/extractor.py
+    - tests/fixtures/ttb_statement_sample.txt (new)
+    - tests/fixtures/ttb_statement_sample_golden.json (new)
+    - tests/test_ttb_golden.py (new)
+    - README.md
+- Notes: pytest passes; local PDF tests still skipped if missing files.

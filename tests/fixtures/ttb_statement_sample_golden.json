@@ -1,0 +1,35 @@
+{
+  "statement": {
+    "provider": "ttb",
+    "account_last4": "1234-XXXX-XXXX-5678",
+    "statement_date": "2026-01-01",
+    "period_start": null,
+    "period_end": null,
+    "previous_balance": 0.0,
+    "new_balance": 5432.1,
+    "payment_due_date": "2026-01-20",
+    "credit_limit": 100000.0,
+    "min_payment": 1000.0,
+    "past_due_amount": 0.0,
+    "total_min_payment": 1000.0,
+    "outstanding_balance": 5432.1
+  },
+  "transactions": [
+    {
+      "date": "2025-12-08",
+      "post_date": "2025-12-11",
+      "description": "KINSHO STORE MATSUBARA JP",
+      "amount": 393.71,
+      "currency": "THB",
+      "foreign_amount": 2580.0,
+      "foreign_currency": "JPY",
+      "conversion_rate": null,
+      "notes": null
+    }
+  ],
+  "rewards": null,
+  "validation": {
+    "errors": [],
+    "warnings": []
+  }
+}

@@ -427,3 +427,12 @@ def normalize_lines(raw_lines: List[RawLine], y_tolerance: float = 3.0) -> List[
             ))
             
     return normalized_lines
+
+def parse_pdf(file_path: str) -> ExtractionResult:
+    """
+    End-to-end helper: extract text, normalize lines, and parse into structured output.
+    """
+    raw_lines = extract_text_with_coords(file_path)
+    normalized = normalize_lines(raw_lines)
+    parser = StatementParser()
+    return parser.parse(normalized)
