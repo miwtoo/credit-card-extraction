@@ -56,11 +56,11 @@ After completing, append to progress.txt:
 
 # COMMIT
 
-Make a git commit with a clear message.
+Make a git commit with a clear message. refer to issue number.
 
 # THE ISSUE
 
-If the task is complete, close the original GitHub issue.
+If the task is complete, close the original GitHub issue. With comment refer to commit number. 
 
 If the task is not complete, leave a comment on the GitHub issue with what was done.
 
