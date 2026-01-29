@@ -1,6 +1,7 @@
 [2026-01-29]
 - Completed Tracer Bullet: TTB PDF -> JSON (Issue #1) - Stub Implementation.
-- Key decisions: Used `uv` for dependency management; implemented Pydantic models for structured output.
+- Completed Project Scaffold: FastAPI, Pydantic, PyMuPDF, and uv setup (Issue #2).
+- Key decisions: Used `uv` for dependency management; implemented Pydantic models for structured output; initialized README and documentation.
 - Files changed:
     - pyproject.toml (added dependencies)
     - src/credit_card_extraction/parser.py (initial parser stub)

@@ -6,6 +6,7 @@ Requires-Python: >=3.11
 Description-Content-Type: text/markdown
 Requires-Dist: fastapi>=0.128.0
 Requires-Dist: pydantic>=2.12.5
+Requires-Dist: pymupdf>=1.26.7
 Requires-Dist: pytest>=9.0.2
 Requires-Dist: ruff>=0.14.14
 Requires-Dist: uvicorn>=0.40.0
