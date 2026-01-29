@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "credit-card-extraction"
+version = "0.0.0"
+description = "Blank project scaffold."
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = []
