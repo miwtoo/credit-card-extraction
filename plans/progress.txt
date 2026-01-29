@@ -8,4 +8,9 @@
     - tests/test_extractor.py (new test)
     - plans/progress.txt (updated)
 - Notes: Next step is line normalization (Issue #4).
-- Issues: PRD reference (Issue #3).
+- Completed Line Normalizer: Grouping by Y-tolerance and sorting by X (Issue #4).
+- Key decisions: Used 3.0px Y-tolerance for row grouping; rows are sorted by X0 to ensure correct reading order even if columns are interleaved in raw text.
+- Files changed:
+    - src/credit_card_extraction/extractor.py (added NormalizedLine and normalize_lines)
+    - tests/test_extractor.py (added normalization tests)
+- Notes: Ready for State Machine Parser (Issue #5).
