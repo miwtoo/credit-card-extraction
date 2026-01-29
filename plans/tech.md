@@ -96,9 +96,7 @@ Provider-specific classifiers return:
 
 ## Observations from Test PDFs
 
-Test set: `test-pdf/ttb credit card e-statement_2989_02Jan2026.pdf`,
-`test-pdf/KBGC_1000000049729211_260110 - unlocked.pdf`,
-`test-pdf/UOB - MONTHLYSTATEMENT_20260128234913726.pdf`.
+Test set: local-only PDFs under `test-pdf/` (ignored by git).
 
 - Statements are bilingual (Thai + English) and repeat column headers per page.
 - Transaction tables are columnar; raw text order can interleave columns unless

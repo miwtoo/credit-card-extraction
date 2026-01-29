@@ -5,7 +5,7 @@ from credit_card_extraction.models import RawLine
 
 def test_extract_text_with_coords_real_pdf():
     # Use the known TTB test PDF
-    pdf_path = "test-pdf/ttb credit card e-statement_2989_02Jan2026.pdf"
+    pdf_path = "test-pdf/ttb_statement_local.pdf"
     
     # Ensure file exists
     if not os.path.exists(pdf_path):
@@ -45,7 +45,7 @@ def test_normalize_lines_mock_data():
     assert normalized[1].page == 1
 
 def test_normalize_lines_with_real_pdf():
-    pdf_path = "test-pdf/ttb credit card e-statement_2989_02Jan2026.pdf"
+    pdf_path = "test-pdf/ttb_statement_local.pdf"
     if not os.path.exists(pdf_path):
         pytest.skip(f"Test PDF not found at {pdf_path}")
         

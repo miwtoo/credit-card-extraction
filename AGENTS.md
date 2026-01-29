@@ -3,6 +3,7 @@
 - Always use `uv` for Python installs, venvs, tools, and builds unless explicitly told otherwise.
 - Project uses `pydantic` for core domain models and `pytest` for validation.
 - PDFs in `test-pdf/` are the primary source for regression tests and layout analysis.
+- Keep PDFs local-only and git-ignored; tests should skip when local fixtures are absent.
 - The `plans/tech.md` document contains the architectural vision, including a state-machine parser design.
 - `uv run pytest` is the preferred way to run tests within the managed environment.
 - When creating/editing GitHub issues via `gh`, prefer `--body-file -` with a single-quoted heredoc (`cat <<'EOF'`) to avoid zsh interpreting backticks/parentheses/`<...>` in the body.

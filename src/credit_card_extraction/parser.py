@@ -21,7 +21,7 @@ def parse_ttb_statement(file_path: str) -> CreditCardStatement:
     return CreditCardStatement(
         bank_name="TTB",
         statement_date=date(2026, 1, 2),
-        account_last4="2989",
+        account_last4="1234",
         transactions=[
             Transaction(
                 date=date(2025, 12, 15),
