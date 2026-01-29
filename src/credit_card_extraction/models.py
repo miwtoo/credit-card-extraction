@@ -29,6 +29,12 @@ class StatementHeader(BaseModel):
     period_end: Optional[date] = None
     previous_balance: float = 0.0
     new_balance: float = 0.0
+    payment_due_date: Optional[date] = None
+    credit_limit: float = 0.0
+    min_payment: float = 0.0
+    past_due_amount: float = 0.0
+    total_min_payment: float = 0.0
+    outstanding_balance: float = 0.0
 
 class Transaction(BaseModel):
     date: date

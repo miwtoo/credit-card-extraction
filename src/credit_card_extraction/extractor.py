@@ -18,6 +18,16 @@ class StatementParser:
     DATE_PATTERN = re.compile(r"(\d{2}/\d{2}/\d{4})")
     AMOUNT_PATTERN = re.compile(r"(-?[\d,]+\.\d{2})")
     FX_PATTERN = re.compile(r"^([A-Z]{3})\s+([\d,]+\.\d{2})$")
+    
+    # Header summary patterns
+    HEADER_SUMMARY_PATTERNS = {
+        "payment_due_date": re.compile(r"Payment Due Date\s*[:\s]\s*(\d{2}/\d{2}/\d{4})", re.IGNORECASE),
+        "credit_limit": re.compile(r"Credit Limit\(Baht\)\s*[:\s]\s*([\d,]+\.\d{2}|[\d,]+)", re.IGNORECASE),
+        "min_payment": re.compile(r"Min\. Payment Amount\s*[:\s]\s*([\d,]+\.\d{2}|[\d,]+)", re.IGNORECASE),
+        "past_due_amount": re.compile(r"Past Due Amount\s*[:\s]\s*([\d,]+\.\d{2}|[\d,]+)", re.IGNORECASE),
+        "total_min_payment": re.compile(r"Total Min\. Payment Amount\s*[:\s]\s*([\d,]+\.\d{2}|[\d,]+)", re.IGNORECASE),
+        "outstanding_balance": re.compile(r"Outstanding Balance\s*[:\s]\s*([\d,]+\.\d{2}|[\d,]+)", re.IGNORECASE),
+    }
 
     def __init__(self):
         self.state = ParserState.START
@@ -84,6 +94,22 @@ class StatementParser:
             date_match = self.DATE_PATTERN.search(text)
             if date_match:
                 self.result.statement.statement_date = datetime.strptime(date_match.group(1), "%d/%m/%Y").date()
+
+        # Extract summary fields
+        for field, pattern in self.HEADER_SUMMARY_PATTERNS.items():
+            match = pattern.search(text)
+            if match:
+                val = match.group(1)
+                if "date" in field:
+                    try:
+                        setattr(self.result.statement, field, datetime.strptime(val, "%d/%m/%Y").date())
+                    except ValueError:
+                        pass
+                else:
+                    try:
+                        setattr(self.result.statement, field, float(val.replace(",", "")))
+                    except ValueError:
+                        pass
 
     def _flush_current(self):
         if self.current_transaction:

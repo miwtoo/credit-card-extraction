@@ -41,4 +41,13 @@
     - src/credit_card_extraction/models.py
     - src/credit_card_extraction/extractor.py
     - tests/test_parser_state.py
+- Completed TTB header summary fields extraction (Issue #12).
+- Key decisions:
+    - Added summary fields (credit limit, payment date, balances) to StatementHeader.
+    - Implemented regex-based extraction in StatementParser._parse_header_line.
+    - Used case-insensitive patterns and handled commas in amounts.
+- Files changed:
+    - src/credit_card_extraction/models.py
+    - src/credit_card_extraction/extractor.py
+    - tests/test_header_summary.py (new)
 - Notes: Ready for FastAPI POST /parse (Issue #8).
