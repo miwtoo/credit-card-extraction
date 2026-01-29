@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: credit-card-extraction
+Version: 0.0.0
+Summary: Blank project scaffold.
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.128.0
+Requires-Dist: pydantic>=2.12.5
+Requires-Dist: pytest>=9.0.2
+Requires-Dist: ruff>=0.14.14
+Requires-Dist: uvicorn>=0.40.0
+
+# credit-card-extraction
+
+Blank project scaffold.

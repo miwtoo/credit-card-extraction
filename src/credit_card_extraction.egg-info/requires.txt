@@ -1,0 +1,5 @@
+fastapi>=0.128.0
+pydantic>=2.12.5
+pytest>=9.0.2
+ruff>=0.14.14
+uvicorn>=0.40.0

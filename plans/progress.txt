@@ -1,0 +1,9 @@
+[2026-01-29]
+- Completed Tracer Bullet: TTB PDF -> JSON (Issue #1) - Stub Implementation.
+- Key decisions: Used `uv` for dependency management; implemented Pydantic models for structured output.
+- Files changed:
+    - pyproject.toml (added dependencies)
+    - src/credit_card_extraction/parser.py (initial parser stub)
+    - tests/test_parser.py (golden path test)
+- Notes: Next iteration will involve real PDF text extraction using PyMuPDF or similar.
+- Issues: PRD reference (Issue #1).
