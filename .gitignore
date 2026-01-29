@@ -1,3 +1,10 @@
-# Test data
-test-pdf/
+.venv/
 __pycache__/
+*.pyc
+.DS_Store
+*.egg-info/
+test-pdf/*.pdf
+test-pdf/*.PDF
+outputs/
+.env
+uv.lock

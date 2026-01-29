@@ -26,3 +26,7 @@
     - tests/test_extractor.py (updated)
     - tests/test_parser_state.py (new)
 - Notes: Ready for Provider-specific rules (Issue #6).
+- Performed deep purge of sensitive PDF statements from git history using git-filter-repo.
+- Updated .gitignore to permanently exclude test-pdf/*.pdf.
+- Verified local files remain on disk but are no longer tracked.
+- Force pushed clean history to main.
