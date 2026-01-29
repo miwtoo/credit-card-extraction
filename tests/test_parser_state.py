@@ -30,4 +30,4 @@ def test_parser_run_without_crashing():
     lines = [NormalizedLine(text="Hello world", page=1, y=0.0)]
     result = parser.parse(lines)
     assert result is not None
-    assert result.header.account_number == "UNKNOWN"
+    assert result.statement.account_last4 == "UNKNOWN"

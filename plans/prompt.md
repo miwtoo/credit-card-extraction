@@ -40,8 +40,7 @@ Then, find a way to break it into a smaller chunk and only do that chunk (i.e. c
 
 Before committing, run the feedback loops:
 
-- `bun run test` to run the tests
-- `bun run typecheck` to run the type checker
+- `uv run pytest` to run the tests
 
 # PROGRESS
 

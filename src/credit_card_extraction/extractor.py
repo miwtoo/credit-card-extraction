@@ -2,7 +2,16 @@ import re
 from datetime import datetime
 from typing import List, Tuple, Dict, Optional
 import fitz  # PyMuPDF
-from .models import RawLine, NormalizedLine, ExtractionResult, StatementHeader, ParserState, Transaction
+from .models import (
+    RawLine, 
+    NormalizedLine, 
+    ExtractionResult, 
+    StatementHeader, 
+    ParserState, 
+    Transaction, 
+    ValidationResult,
+    RewardBalance
+)
 
 class StatementParser:
     # TTB specific patterns
@@ -13,9 +22,9 @@ class StatementParser:
     def __init__(self):
         self.state = ParserState.START
         self.result = ExtractionResult(
-            header=StatementHeader(account_number="UNKNOWN"),
+            statement=StatementHeader(account_last4="UNKNOWN"),
             transactions=[],
-            validation=[]
+            validation=ValidationResult()
         )
         self.current_transaction: Optional[Transaction] = None
         self.pending_fx: Optional[Tuple[str, float]] = None
@@ -65,16 +74,16 @@ class StatementParser:
         # Extract Card Number: XXXX-XXXX-XXXX-2989
         card_match = re.search(r"(\d{4}-[\dXx-]{7,}-\d{4})", text)
         if card_match:
-            self.result.header.account_number = card_match.group(1)
+            self.result.statement.account_last4 = card_match.group(1)
         
         # Extract Statement Date (usually near the top)
         # TTB often has "Date: 02 Jan 2026" or similar
         # For now, look for any date if account is already found
-        if self.result.header.statement_date is None:
+        if self.result.statement.statement_date is None:
             # Look for 02Jan2026 or 02/01/2026
             date_match = self.DATE_PATTERN.search(text)
             if date_match:
-                self.result.header.statement_date = datetime.strptime(date_match.group(1), "%d/%m/%Y").date()
+                self.result.statement.statement_date = datetime.strptime(date_match.group(1), "%d/%m/%Y").date()
 
     def _flush_current(self):
         if self.current_transaction:
@@ -119,7 +128,7 @@ class StatementParser:
             
             try:
                 self.current_transaction = Transaction(
-                    transaction_date=datetime.strptime(trans_date_str, "%d/%m/%Y").date(),
+                    date=datetime.strptime(trans_date_str, "%d/%m/%Y").date(),
                     post_date=datetime.strptime(post_date_str, "%d/%m/%Y").date(),
                     description=desc_part,
                     amount=amount

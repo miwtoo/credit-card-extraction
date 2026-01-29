@@ -32,8 +32,13 @@
     - Added TTB-specific regex for account number (card) and statement date extraction.
 - Files changed:
     - src/credit_card_extraction/extractor.py (Added TTB parsing logic and patterns)
-- Notes: Ready for JSON domain models + validation shell (Issue #7).
-- Performed deep purge of sensitive PDF statements from git history using git-filter-repo.
-- Updated .gitignore to permanently exclude test-pdf/*.pdf.
-- Verified local files remain on disk but are no longer tracked.
-- Force pushed clean history to main.
+- Completed JSON domain models + validation shell (Issue #7).
+- Key decisions:
+    - Aligned Pydantic models with tech.md JSON schema (statement, transactions, rewards, validation).
+    - Introduced ValidationResult with separate errors and warnings lists.
+    - Updated extractor and tests to use renamed fields (account_last4, date, points_earned, etc.).
+- Files changed:
+    - src/credit_card_extraction/models.py
+    - src/credit_card_extraction/extractor.py
+    - tests/test_parser_state.py
+- Notes: Ready for FastAPI POST /parse (Issue #8).

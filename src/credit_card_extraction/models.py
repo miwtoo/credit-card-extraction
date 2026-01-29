@@ -22,14 +22,16 @@ class NormalizedLine(BaseModel):
     y: float
 
 class StatementHeader(BaseModel):
-    account_number: str = Field(..., description="Anonymized or last 4 digits of the card")
+    provider: str = "ttb"
+    account_last4: str = Field(..., description="Anonymized or last 4 digits of the card")
     statement_date: Optional[date] = None
     period_start: Optional[date] = None
     period_end: Optional[date] = None
-    bank_name: str = "TTB"  # Default for MVP
+    previous_balance: float = 0.0
+    new_balance: float = 0.0
 
 class Transaction(BaseModel):
-    transaction_date: date
+    date: date
     post_date: Optional[date] = None
     description: str
     amount: float
@@ -37,23 +39,23 @@ class Transaction(BaseModel):
     foreign_amount: Optional[float] = None
     foreign_currency: Optional[str] = None
     conversion_rate: Optional[float] = None
+    notes: Optional[str] = None
 
 class RewardBalance(BaseModel):
-    previous_balance: int = 0
-    earned: int = 0
-    redeemed: int = 0
-    current_balance: int = 0
+    points_previous_balance: int = 0
+    points_earned: int = 0
+    points_redeemed: int = 0
+    points_balance: int = 0
 
-class ValidationIssue(BaseModel):
-    level: str  # "warning" or "error"
-    message: str
-    line_number: Optional[int] = None
+class ValidationResult(BaseModel):
+    errors: List[str] = []
+    warnings: List[str] = []
 
 class ExtractionResult(BaseModel):
-    header: StatementHeader
+    statement: StatementHeader
     transactions: List[Transaction] = []
     rewards: Optional[RewardBalance] = None
-    validation: List[ValidationIssue] = []
+    validation: ValidationResult = Field(default_factory=ValidationResult)
 
 class ParserStateOutput(BaseModel):
     """Container for intermediate parser states if needed"""
