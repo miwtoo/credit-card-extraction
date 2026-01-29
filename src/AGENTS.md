@@ -7,3 +7,4 @@
 - Normalized lines can include multiple transactions; parsing should split a single line into multiple transactions when possible.
 - Header balances have a fallback: if one of `new_balance`/`outstanding_balance` is zero, copy the other.
 - Footer keywords may appear inside transaction rows; trimming should occur before finalizing descriptions.
+- Prefer `parse_pdf()` in `src/credit_card_extraction/extractor.py` for end-to-end parsing (extract → normalize → parse); API layer calls this helper.
